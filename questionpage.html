@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style type="text/css">
+	.green{
+		background: red;
+	}
+	.mystyle{
+		background: red;
+	}
+	.options .answer{
+pointer-events: none;
+cursor: default;		
+}
+
+label{
+pointer-events: none;
+cursor: default;	
+}
+  .right{
+  	background: green;
+  }
+  .wrong{
+  	background: red;
+  }
+  .border-botom{
+  	border-bottom:8px solid red;
+  }
+</style>
+</head>
+<body>
+	<section>
+		<header class="navbar container">
+		<a href="#">		
+<span class="navbar__span">View Highscores<i class="fas fa-hand-point-left fa-lg  Highscores"></i></span>
+</a>
+		<div>
+			<span class="color-white">Timer:41</span>
+		</div>
+		
+	</header>
+	</section>
+
+	<section class="questions quiz">
+	   <div class="question__wrapper">
+	   	<form class="quiz-form text-light">
+	   	<h1 class="question" id="question">
+	   		Commonly used data types do not include:
+	   	</h1>
+	   	        <div class="questions__answers" id="questions__answers">
+	   	        	<button class="btn" name="q1"
+                       value="A"
+	   	        	><span class="options answer
+	   	        		" id="a">A</span>
+                     <label for="a" id="a_text">Question</label>
+                                     <label for="ans" id="ans" style="display:none"></label>
+                                     	</button>
+	   		   	<button class="btn"
+	   		   	name="q2"
+                       value="B"
+	   		   	><span class="options answer"
+	   		   		id="b">B</span>
+                  <label for="b" id="b_text">Question</label>
+               <label for="ans" id="ans" style="display:none"></label>
+           </button>
+	   		   	<button class="btn"
+                  name="q3"
+                       value="c"
+	   		   	><span class="options answer"
+	   		   		id="c">C</span>
+                 <label for="c" id="c_text">Question</label>
+                 <label for="ans" id="ans" style="display:none"></label>
+	   		   	</button>
+	   		   	<button class="btn"
+                  name="q4"
+                  value="d" 
+	   		   	><span class="options answer"
+	   		   		id="d">D</span>
+                <label for="d" id="d_text">Question</label>
+                <label for="ans" id="ans" style="display:none"></label>
+	   		   	</button>	
+	   	</form>
+	   	        </div>
+	   	              <!-- button id="submit"
+	   	              class="btn">Submit</button> -->
+	   	              	   		   	<span class="border-botom"></span>
+	   	              	   		   	   <p id="demo"></p>
+
+	   		   	</div>
+
+	</section>
+	
+
+<script type="text/javascript">
+	const quizData =[
+	  {
+	  	question:"Which language runs in a web browser",
+	  	a:"java",
+	  	b:"solidity",
+	  	c:"Python",
+	  	d:"Javascript",
+	  	correct:"Javascript",
+
+	  },
+	  {
+	  	question:"What does CSS stand for?",
+	  	a:"Central Style Sheets",
+	  	b:"Cascadin Style Sheets",
+	  	c:"Cascading Simle Sheets",
+	  	d:"Cars SUVS Sailboats",
+	  	correct:"Cascadin Style Sheets"
+
+	  },
+	  {
+	  	question:"What does PHP?",
+	  	a:"PERSONAL HOME PAGE",
+	  	b:"NOT A HOME PAGE",
+	  	c:"PERSON SHEET ALLOWED",
+	  	d:"WHAT DO YOU THINK",
+	  	correct:"PERSONAL HOME PAGE"
+
+	  }
+	  ];
+
+const output=document.getElementById('demo');
+const quiz=document.getElementById('quiz');
+const questionEl=document.getElementById('question');
+const answerEls=document.querySelectorAll('.answer');
+const a_text=document.getElementById('a_text');
+const b_text=document.getElementById('b_text');
+const c_text=document.getElementById('c_text');
+const d_text=document.getElementById('d_text');
+const e_answ=document.getElementById('ans');
+const buttonQuestion=document.querySelectorAll('.questions__answers');
+const button=document.querySelectorAll('.btn');
+ const form=document.querySelector('.quiz-form');
+
+
+ const options=document.querySelectorAll('.options');
+
+ 
+ console.log(options);
+ window.addEventListener('load', (event) => {
+    console.log('The page has fully loaded');
+    });
+
+
+console.log(button);
+
+let currentQuiz=2;
+let score =0;
+
+loadQuiz();
+  function loadQuiz(){
+  	//load question text
+     const currentQuizData=quizData[currentQuiz];
+      questionEl.innerText=currentQuizData.question
+      a_text.innerText=currentQuizData.a;
+      b_text.innerText=currentQuizData.b;
+      c_text.innerText=currentQuizData.c;
+      d_text.innerText=currentQuizData.d;
+      e_answ.innerText=currentQuizData.correct;
+ }
+//pseudo code for selecting a value
+    const userAnswers=[a_text.innerText,b_text.innerText,c_text.innerText,d_text.innerText,e_answ.innerText];
+    console.log(userAnswers);
+    let lastIndex=userAnswers[userAnswers.length-1]
+    console.log(lastIndex);
+
+button.forEach((btn)=>{
+	btn.addEventListener("click",(event)=>{
+	event.preventDefault();
+		console.log(event.target.innerText.substr(2));
+		// console.log(lastIndex);
+		if(event.target.innerText.substr(2)==e_answ.innerText){
+			console.log("correct");
+        const listen=document.querySelector('.btn');
+        output.innerText="Correct!!!";
+        currentQuiz++;
+			// listen.classList.add('right');
+		}else{
+			console.log("wrong");
+			output.innerText="Wrong!!!!"
+		}
+	})
+})
+
+
+
+
+	
+
+
+</script>
+
+
+
+
+</body>
+</html>
